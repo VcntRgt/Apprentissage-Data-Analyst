@@ -1,0 +1,54 @@
+import mean_var_std
+from unittest import main
+import numpy as np
+
+def calculate(list):
+
+    #Checking if the list has 9 elements at least
+    if len(list) < 9:
+        raise ValueError("List must contain nine numbers.")
+    
+    #Create a Numpy array from the list and reshape it in 3 x 3
+    a = np.array(list)
+    a = a.reshape(3,3) 
+
+    #Calculate mean, variance, standard variation, max, min and sum for each row and column of the 3 x 3 array.
+
+    mean_cols = np.mean(a, axis = 0)
+    mean_rows = np.mean(a, axis = 1)
+    mean_flattened = np.mean(a)
+
+    var_cols = np.var(a, axis = 0)
+    var_rows = np.var(a, axis = 1)
+    var_flattened = np.var(a)
+
+    std_cols = np.std(a, axis = 0)
+    std_rows = np.std(a, axis = 1)
+    std_flattened = np.std(a)
+
+    max_cols = np.max(a, axis = 0)
+    max_rows = np.max(a, axis = 1)
+    max_flattened = np.max(a)
+
+    min_cols = np.min(a, axis = 0)
+    min_rows = np.min(a, axis = 1)
+    min_flattened = np.min(a)
+
+    sum_cols = np.sum(a, axis = 0)
+    sum_rows = np.sum(a, axis = 1)
+    sum_flattened = np.sum(a)  
+  
+    #Putting all the results in a result board
+    calculations = {
+        "mean" : [mean_cols.tolist(), mean_rows.tolist(), mean_flattened],
+        "variance" : [var_cols.tolist(), var_rows.tolist(), var_flattened],
+        "standard deviation" : [std_cols.tolist(), std_rows.tolist(), std_flattened],
+        "max" : [max_cols.tolist(), max_rows.tolist(), max_flattened],
+        "min" : [min_cols.tolist(), min_rows.tolist(), min_flattened],
+        "sum" : [sum_cols.tolist(), sum_rows.tolist(), sum_flattened],
+    }
+
+    return calculations
+
+
+print(mean_var_std.calculate([0,1,2,3,4,5,6,7,8]))
